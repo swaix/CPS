@@ -1,0 +1,704 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formulario di Probabilità e Statistica
+% Creato dal Tutor di Probabilità e Statistica (CPS)
+% Versione: 13.0 (Release Candidate)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper, 10pt]{article}
+
+% --- PACHETTI ESSENZIALI ---
+\usepackage[a4paper, top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[svgnames]{xcolor}
+\usepackage[framemethod=default]{mdframed}
+\usepackage{hyperref}
+\usepackage{array} 
+\usepackage{booktabs} 
+\usepackage{tabularx}
+\usepackage{colortbl}
+
+% --- DEFINIZIONE COLORI ---
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.55}
+\definecolor{graybg}{rgb}{0.95, 0.95, 0.95}
+\definecolor{lightyellow}{rgb}{1, 1, 0.88}
+\definecolor{exampletitlebg}{rgb}{0.98, 0.92, 0.75}
+\definecolor{exampleborder}{rgb}{0.85, 0.75, 0.45}
+
+% --- DEFINIZIONE AMBIENTE "CARD" ---
+\newmdenv[
+  linecolor=darkblue,
+  linewidth=0.5pt,
+  backgroundcolor=graybg,
+  frametitlerule=true,
+  frametitlerulecolor=darkblue,
+  frametitlebackgroundcolor=graybg,
+  frametitlefont=\color{darkblue}\bfseries,
+  roundcorner=5pt,
+  skipabove=10pt,
+  skipbelow=10pt,
+  frametitlealignment=\raggedright,
+  frametitlebelowskip=5pt
+]{card}
+
+% --- TITOLO DEL DOCUMENTO ---
+\title{\bfseries\Huge Formulario di Probabilità e Statistica v13.0}
+\author{Alessandro Finocchiaro}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\begin{card}[frametitle={Mappa Decisionale Definitiva}]
+\centering
+\small
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{X X X l}
+\toprule
+\textbf{Se il problema chiede di...} & \textbf{Parole Chiave / Condizioni} & \textbf{Esempio Chiave (Testo-Tipo)} & \textbf{Vai a:} \\
+\midrule
+\textbf{Contare} i modi di formare un gruppo & "in quanti modi", "ordine non conta" & *"In quanti modi posso formare un comitato di 3 persone da 10?"* & \textbf{Combinatorio} \\
+Calcolare P(A) con "casi fav./poss." & "dadi", "monete", "urna" (semplice) & *"Qual è la probabilità che la somma di due dadi sia 7?"* & \textbf{Prob. di Base} \\
+Calcolare P(A), dato un evento B & \textbf{sapendo che}, "dato che" & *"Estraggo una carta. Sapendo che è di cuori, qual è la prob. che sia un Re?"* & \textbf{Prob. Condizionata} \\
+Risalire alla \textbf{causa} da un \textbf{effetto} & Ti danno $P(\text{E}|\text{C})$, ti chiedono $P(\text{C}|\text{E})$ & *"Un test medico ha un'accuratezza X. Se sei positivo, qual è la prob. di essere malato?"* & \textbf{Teorema di Bayes} \\
+\midrule
+...contare successi in \textbf{n prove fisse} & \textbf{Indipendenti} (con reinserimento) & *"Lancio una moneta 10 volte. Qual è la prob. di ottenere 8 teste?"* & \textbf{Binomiale} \\
+...contare successi in \textbf{n estrazioni} & \textbf{Dipendenti} (senza reinserimento) & *"Da un'urna con 6R e 4N, estraggo 5 palline. Qual è la prob. di averne 3R?"* & \textbf{Ipergeometrica} \\
+...contare prove \textbf{fino al 1° successo} & "il primo a...", "finché non..." & *"Qual è la prob. che il primo 6 esca al 4° lancio di un dado?"* & \textbf{Geometrica} \\
+...contare eventi in un \textbf{intervallo} & \textbf{Media nota} ($\lambda$), "in un'ora" & *"Un call center riceve 5 chiamate/ora. Qual è la prob. di riceverne 2?"* & \textbf{Poisson} \\
+\midrule
+...misurare una quantità \textbf{equiprobabile} & "scelto a caso in $[a,b]$" & *"Un bus passa ogni 20 min. Qual è la prob. di aspettarlo meno di 5 min?"* & \textbf{Uniforme} \\
+...misurare il \textbf{tempo di attesa} & "durata di vita", "tempo tra eventi" & *"La durata di una lampadina è esponenziale. Qual è la prob. che duri > 1000 ore?"* & \textbf{Esponenziale} \\
+\raggedright ...misurare una grandezza \textbf{a campana} & Vengono date \textbf{Media e Dev. Standard} & *"L'altezza degli studenti è Normale. Qual è la prob. che uno sia > 180cm?"* & \textbf{Normale} \\
+\midrule
+\raggedright ...lavorare con la \textbf{SOMMA/MEDIA} & $n > 30$, "somma di 100 variabili" & *"Qual è la prob. che il peso totale di 50 passeggeri superi 4000 kg?"* & \textbf{TLC} \\
+\raggedright ...lavorare con \textbf{due v.a. insieme} & Tabella a doppia entrata, $p(x,y)$ & *"Data una tabella congiunta, le variabili X e Y sono indipendenti?"* & \textbf{V.A. Congiunte} \\
+\raggedright ...trovare la densità di \textbf{Y = g(X)} & "Sia $X \sim U(0,1)$ e $Y=X^2$. Trovare la densità di Y." & *"Sia X ~ U(0,1) e Y=X². Trovare la densità di Y."* & \textbf{Trasformazioni} \\
+\bottomrule
+\end{tabularx}
+\end{card}
+
+\newpage
+
+% --- BLOCCO DA AGGIUNGERE ALL'INIZIO DELLA SEZIONE 1 ---
+\begin{card}[frametitle={Flusso Diagnostico per Esercizi di Estrazione}]
+\textbf{Teoria:} Usa questo schema per decidere l'approccio corretto ai problemi con le urne.
+\vspace{10pt}
+\begin{itemize}
+    \item[\textbf{Q1:}] L'estrazione è \textbf{con reinserimento}?
+    \begin{itemize}
+        \item[\textbf{Sì:}] Gli eventi sono \textbf{indipendenti}. Per calcolare la probabilità di una sequenza, moltiplica le probabilità di ogni singola estrazione (che rimangono costanti).
+    \end{itemize}
+    \begin{itemize}
+        \item[\textbf{No:}] Gli eventi sono \textbf{dipendenti}. Passa alla prossima domanda.
+    \end{itemize}
+    \vspace{5pt}
+    \item[\textbf{Q2:}] L'**ordine di estrazione conta**?
+    \begin{itemize}
+        \item[\textbf{Sì}] (Parole chiave: "in sequenza", "prima... e poi...", "(nera, bianca)"):
+        \begin{itemize}
+            \item Usa la \textbf{Probabilità Condizionata} (Regola del Prodotto). Vedi card \textit{Estrazioni}.
+        \end{itemize}
+        \item[\textbf{No}] (Parole chiave: "in blocco", "un gruppo di", "2 nere e 1 bianca"):
+        \begin{itemize}
+            \item Usa le \textbf{Combinazioni} (Distribuzione Ipergeometrica). Vedi card \textit{Ipergeometrica}.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+\end{card}
+
+\newpage
+
+% ==============================================================================
+% SEZIONE 1: FONDAMENTI DI PROBABILITÀ
+% ==============================================================================
+\section*{Sezione 1: Fondamenti di Probabilità}
+
+\begin{card}[frametitle={Probabilità di Base}]
+\textbf{Teoria:} Si usa per problemi semplici con un numero finito di esiti equiprobabili.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto: P(almeno un 6 in 3 lanci)} \\
+    \hline
+    \textbf{1. (Pro Tip) Usa il Complementare:} Se la domanda contiene "almeno uno...", è più facile calcolare la probabilità del suo contrario, cioè "nessuno". & L'evento complementare è "non ottenere nessun 6 in 3 lanci". \\
+    \hline
+    \textbf{2. Calcola la prob. del singolo evento (complementare):} & La probabilità di NON fare 6 in un singolo lancio è $5/6$. \\
+    \hline
+    \textbf{3. Calcola la prob. della sequenza:} Poiché i lanci sono indipendenti, moltiplichiamo le probabilità per ogni prova. & $P(\text{nessun 6 in 3 lanci}) = (\frac{5}{6})^3 = \frac{125}{216}$. \\
+    \hline
+    \textbf{4. Applica la formula del complementare:} Usa la formula $P(A) = 1 - P(A^c)$. & $P(\text{almeno un 6}) = 1 - \frac{125}{216} = \frac{91}{216}$. \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\begin{card}[frametitle={Probabilità Condizionata e Teorema di Bayes}]
+\textbf{Teoria:} Permette di aggiornare la probabilità di una causa alla luce di un effetto osservato.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto (Test Medico)} \\
+    \hline
+    \textbf{1. Definisci Eventi e Dati:} Traduci il testo in notazione formale, identificando Cause ed Effetto. & 
+    \begin{itemize}
+        \item Cause: Malato (M), Sano (S).
+        \item Effetto: Positivo (T).
+        \item $P(M)=0.01 \implies P(S)=0.99$.
+        \item $P(T|M)=0.95$, $P(T|S)=0.05$.
+        \item \textbf{Obiettivo:} $P(M|T)$.
+    \end{itemize} \\
+    \hline
+    \textbf{2. Calcola Denominatore (Prob. Totale):} Usa la Formula delle Probabilità Totali per trovare $P(\text{Effetto})$. \[ P(E) = \sum P(E|C_i)P(C_i) \] & 
+    $P(T) = P(T|M)P(M) + P(T|S)P(S)$
+    $= (0.95)(0.01) + (0.05)(0.99) = 0.059$. \\
+    \hline
+    \textbf{3. Calcola Numeratore:} Prendi i termini relativi solo alla causa che ti interessa: $P(E|C_k)P(C_k)$. & 
+    $P(T|M)P(M) = (0.95)(0.01) = 0.0095$. \\
+    \hline
+    \textbf{4. Assembla la Formula di Bayes:} Dividi il Numeratore per il Denominatore. & 
+    \[ P(M|T) = \frac{P(T|M)P(M)}{P(T)} = \frac{0.0095}{0.059} \approx 16.1\% \] \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\newpage
+
+% ==============================================================================
+% SEZIONE 2: VARIABILI ALEATORIE (V.A.)
+% ==============================================================================
+\section*{Sezione 2: Variabili Aleatorie (V.A.)}
+
+\begin{card}[frametitle={V.A. Generiche: Media e Varianza}]
+\textbf{Teoria:} Calcola gli indici di posizione (media) e dispersione (varianza) per una v.a. generica.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto ($X$ con $P(0)=0.5, P(1)=0.3, P(2)=0.2$)} \\
+    \hline
+    \textbf{1. Elenca i valori e le probabilità:} Prepara una lista dei valori $k$ che la v.a. può assumere e delle loro probabilità $P(X=k)$. & Valori: $\{0, 1, 2\}$. \newline Probabilità: $\{0.5, 0.3, 0.2\}$. \\
+    \hline
+    \textbf{2. Calcola $E[X]$:} Calcola la somma pesata: \[ E[X] = \sum_k k \cdot P(X=k) \] & $E[X] = (0 \cdot 0.5) + (1 \cdot 0.3) + (2 \cdot 0.2) = 0.7$. \\
+    \hline
+    \textbf{3. Calcola $E[X^2]$:} Calcola la somma pesata dei quadrati: \[ E[X^2] = \sum_k k^2 \cdot P(X=k) \] & $E[X^2] = (0^2 \cdot 0.5) + (1^2 \cdot 0.3) + (2^2 \cdot 0.2) = 1.1$. \\
+    \hline
+    \textbf{4. Calcola la Varianza:} Usa la formula: \[ \text{Var}(X) = E[X^2] - (E[X])^2 \] & $\text{Var}(X) = 1.1 - (0.7)^2 = 1.1 - 0.49 = 0.61$. \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\begin{card}[frametitle={Probabilità di Eventi su V.A. (Casi Astratti)}]
+\textbf{Teoria:} Calcolare la probabilità di un evento definito da una relazione tra v.a. (es. $P(X \ge Y)$).
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto (Calcolare $P(X_1=X_2)$)} \\
+    \hline
+    \textbf{1. Identifica i Casi Favorevoli:} Trova tutte le coppie/valori $(x,y,...)$ che soddisfano la condizione data. & L'evento "$X_1=X_2$" è l'insieme di tutte le coppie $(k,k)$ per $k=0, 1, 2, \dots$. \\
+    \hline
+    \textbf{2. Recupera le Probabilità:} Prendi i valori $p(x,y,...)$ per ogni caso favorevole dalla funzione di densità/probabilità fornita. & Per ogni coppia $(k,k)$, la probabilità è data dalla formula $p(k,k)$. \\
+    \hline
+    \textbf{3. Somma (o Integra):} Per v.a. discrete, somma tutte le probabilità trovate. \[ P(\text{Evento}) = \sum_{\text{casi favorevoli}} p(x,y) \] & La probabilità totale è la somma (in questo caso, una serie) di tutte le probabilità dei casi favorevoli: \[ P(X_1=X_2) = \sum_{k=0}^{\infty} p(k,k) \] \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\newpage
+
+\begin{card}[frametitle={Valore Atteso e Varianza della Somma}]
+\textbf{Teoria:} Fornisce le proprietà di media e varianza di una somma di due variabili aleatorie.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto (Somma dei punteggi di 2 dadi)} \\
+    \hline
+    \textbf{1. Calcola le Medie:} Trova $E[X]$ e $E[Y]$ e sommali. & $E[X]=E[Y]=3.5$. \newline $E[X+Y] = 3.5+3.5=7$. \\
+    \hline
+    \textbf{2. Calcola le Varianze:} Trova $\text{Var}(X)$, $\text{Var}(Y)$. & $\text{Var}(X)=\text{Var}(Y)=35/12$. \\
+    \hline
+    \textbf{3. Valuta la Covarianza:} Se le v.a. sono indipendenti, $\text{Cov}(X,Y)=0$. & I lanci dei dadi sono indipendenti, quindi $\text{Cov}(X,Y)=0$. \\
+    \hline
+    \textbf{4. Applica la Formula per la Varianza:} $Var(X+Y) = Var(X)+Var(Y)+2Cov(X,Y)$. & $\text{Var}(X+Y)=\frac{35}{12}+\frac{35}{12}+0=\frac{70}{12}$. \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\begin{card}[frametitle={Variabili Indicatrici ($I_A$)}]
+\textbf{Teoria:} Metodo potente per calcolare il valore atteso di una v.a. che conta dei successi.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto (N. medio di Assi in 5 carte)} \\
+    \hline
+    \textbf{1. Definisci gli Indicatori:} Scrivi $X$ come somma di $I_{A_i}$, dove $I_{A_i}=1$ se l'i-esimo evento è un successo. & Sia $I_i=1$ se la i-esima carta è un Asso. La v.a. $X$ che conta gli Assi è: \[ X = I_1+I_2+I_3+I_4+I_5 \] \\
+    \hline
+    \textbf{2. Calcola $P(A_i)$:} Trova la probabilità del singolo successo. & La probabilità che una specifica carta sia un Asso è $P(A_i) = 4/52$. \\
+    \hline
+    \textbf{3. Usa la Linearità:} Il valore atteso della somma è la somma dei valori attesi: \[ E[X] = \sum E[I_{A_i}] = \sum P(A_i) \] & \[ E[X] = \sum_{i=1}^5 P(A_i) = 5 \times \frac{4}{52} = \frac{20}{52} \] \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\begin{card}[frametitle={Variabili Aleatorie Congiunte}]
+\textbf{Teoria:} Descrivono il comportamento simultaneo di due v.a. discrete tramite una tabella.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto (Data una tabella $p(x,y)$)} \\
+    \hline
+    \textbf{1. Calcolare le Marginali:} Per trovare $P(X=x)$, \textbf{somma lungo la riga}. Per $P(Y=y)$, \textbf{somma lungo la colonna}. & Per trovare $p_X(0)$, sommo tutti i valori sulla riga $x=0$. \\
+    \hline
+    \textbf{2. Verificare l'Indipendenza:} Trova \textbf{una sola cella} in cui $P(x,y) \neq P(x) \cdot P(y)$ per dimostrare la dipendenza. & Testo la cella (0,0): calcolo $p_X(0) \cdot p_Y(0)$ e lo confronto con il valore $p(0,0)$ dato nella tabella. Se sono diversi $\implies$ dipendenti. \\
+    \hline
+    \textbf{3. Calcolare P(Evento):} Somma le probabilità delle celle che soddisfano la condizione. & Per calcolare $P(X \ge Y)$, sommo le probabilità di tutte le celle $(x,y)$ in cui il valore di $x$ è maggiore o uguale a quello di $y$. \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\newpage
+
+\begin{card}[frametitle={Trasformazioni di V.A. ($Y=g(X)$)}]
+\textbf{Teoria:} Serve a trovare la funzione di distribuzione di una funzione di una v.a.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto ($Y=X^2$ con $X \sim U(0,2)$)} \\
+    \hline
+    \textbf{1. Partire dalla CDF di Y:} Scrivi la sua definizione e sostituisci $Y$ con $g(X)$. \[ F_Y(y) = P(Y \le y) \] & $F_Y(y) = P(X^2 \le y)$. \\
+    \hline
+    \textbf{2. Isolare X:} Manipola la disequazione per ottenere $P(X \le h(y))$. Questo è uguale a $F_X(h(y))$. & Poiché $X \ge 0$, la disequazione diventa $P(X \le \sqrt{y})$. Quindi $F_Y(y) = F_X(\sqrt{y})$. \\
+    \hline
+    \textbf{3. Usare la CDF di X:} Trova la formula per la CDF della variabile di partenza, $F_X(x)$, e sostituisci. & Per una U(0,2), la CDF è $F_X(t)=t/2$. Sostituendo $t=\sqrt{y}$ otteniamo: \[ F_Y(y) = \frac{\sqrt{y}}{2} \] \\
+    \hline
+    \textbf{4. Derivare (per trovare la PDF):} Calcola $f_Y(y) = F'_Y(y)$. & \[ f_Y(y) = \frac{d}{dy}\left(\frac{\sqrt{y}}{2}\right) = \frac{1}{4\sqrt{y}} \] \\
+    \hline
+    \textbf{5. Trovare il nuovo dominio:} Applica la funzione $g(X)$ agli estremi del dominio di X. & Se $X \in [0,2]$, allora $Y=X^2$ appartiene a $[0^2, 2^2] = [0,4]$. \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\newpage
+
+% ==============================================================================
+% SEZIONE 3: MODELLI DI VARIABILI ALEATORIE
+% ==============================================================================
+\section*{Sezione 3: Modelli di Variabili Aleatorie}
+
+\begin{card}[frametitle={Distribuzione Binomiale $\boldsymbol{X \sim \text{Bin}(n, p)}$}]
+\textbf{Teoria:} Conta il numero di successi in $n$ prove binarie indipendenti.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto (Arciere)} \\
+    \hline
+    \textbf{1. Identifica i parametri:} Trova $n$ (numero prove), $p$ (prob. successo) e $k$ (successi richiesti). & Dati: $n=10$ tiri, $p=0.8$ di colpire, $k=7$ successi richiesti. \\
+    \hline
+    \textbf{2. Applica la formula:} \[ p_X(k) = \binom{n}{k} p^k (1-p)^{n-k} \] & \[ P(X=7) = \binom{10}{7} (0.8)^7 (0.2)^3 \approx 0.2013 \] \\
+    \hline
+    \textbf{3. Media e Varianza (se richieste):} Usa le formule $E[X]=np$ e $Var(X)=np(1-p)$. & $E[X]=10 \cdot 0.8 = 8$. \newline $Var(X)=10 \cdot 0.8 \cdot 0.2 = 1.6$. \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\begin{card}[frametitle={Distribuzione Ipergeometrica}]
+\textbf{Teoria:} Si usa per estrazioni \textbf{senza reinserimento} da una popolazione divisa in gruppi.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto (Urna con 4B e 3N)} \\
+    \hline
+    \textbf{1. Identifica i parametri:} Trova $N$ (totale), $n$ (estratti), $K_i$ (dimensione gruppi), $k_i$ (estratti per gruppo). & Dati: $N=7$, $n=4$ estratti. Gruppi: $K_B=4$, $K_N=3$. Richiesta: $k_B=2$, $k_N=2$. \\
+    \hline
+    \textbf{2. Assembla la frazione:} La probabilità è data da Casi Favorevoli / Casi Possibili. \[ P(\text{evento}) = \frac{\binom{K_1}{k_1} \binom{K_2}{k_2} \cdots}{\binom{N}{n}} \] & \[ P(\text{2B, 2N}) = \frac{\binom{4}{2} \binom{3}{2}}{\binom{7}{4}} = \frac{6 \cdot 3}{35} = \frac{18}{35} \] \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+
+\begin{card}[frametitle={Estrazioni: Con Ordine vs Senza Ordine}]
+\textbf{Teoria:} Distingue tra problemi in cui l'ordine di estrazione conta e quelli in cui non conta.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Modalità di Estrazione} & \textbf{Esempio Svolto (Urna: 4 Bianche, 3 Nere)} \\
+    \hline
+    \textbf{1. Senza Ordine ("in blocco"):} Si usano le combinazioni (Ipergeometrica). La formula è $\frac{\text{Casi Favorevoli}}{\text{Casi Possibili}}$. & \textbf{Domanda:} Estraggo 4 palline. $P(\text{2B e 2N})$? \newline \textbf{Soluzione:} \[ P = \frac{\binom{4}{2} \binom{3}{2}}{\binom{7}{4}} = \frac{6 \cdot 3}{35} = \frac{18}{35} \] \\
+    \hline
+    \textbf{2. Con Ordine ("una alla volta"):} Si usa la probabilità condizionata. La formula è $P(A \text{ e poi } B) = P(A) \cdot P(B|A)$. & \textbf{Domanda:} Estraggo 2 palline. $P(\text{1° N, 2° B})$? \newline \textbf{Soluzione:} \[ P = P(\text{1°N}) \cdot P(\text{2°B|1°N}) = \frac{3}{7} \cdot \frac{4}{6} = \frac{2}{7} \] \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\newpage
+
+\begin{card}[frametitle={Distribuzione Geometrica $\boldsymbol{X \sim \text{Geo}(p)}$}]
+\textbf{Teoria:} Conta il numero di prove necessarie per ottenere il **primo successo**.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto (Lancio di un dado)} \\
+    \hline
+    \textbf{1. Identifica i parametri:} Trova $p$ (prob. successo) e $k$ (il tentativo del primo successo). & Domanda: Prob. che il primo 6 esca al 4° lancio? \newline Dati: $p=1/6$, $k=4$. \\
+    \hline
+    \textbf{2. Applica la formula:} \[ p_X(k) = (1-p)^{k-1}p \] & \[ P(X=4) = (1-1/6)^{4-1} \cdot (1/6) = (5/6)^3 \cdot (1/6) \approx 0.096 \] \\
+    \hline
+    \textbf{3. Media (se richiesta):} Usa la formula $E[X] = 1/p$. & Il numero medio di lanci per ottenere un 6 è $E[X] = \frac{1}{1/6} = 6$. \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\begin{card}[frametitle={Distribuzione di Poisson $\boldsymbol{X \sim Po(\lambda)}$}]
+\textbf{Teoria:} Conta il numero di eventi rari in un intervallo fissato di tempo o spazio.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto (Call Center)} \\
+    \hline
+    \textbf{1. Identifica $\lambda$:} Trova il tasso medio di eventi nell'intervallo di tempo/spazio dato. & Dati del problema: Un call center riceve in media 3 chiamate/ora ($\lambda=3$). \\
+    \hline
+    \textbf{2. Adatta $\lambda$ (se necessario):} Se l'intervallo della domanda è diverso, riproporziona $\lambda$. & Domanda: Prob. di 0 chiamate in 20 minuti? \newline 20 min = 1/3 di ora. Il nuovo tasso è $\lambda' = 3 \cdot (1/3)=1$. \\
+    \hline
+    \textbf{3. Identifica $k$ e applica la formula:} Trova il numero di eventi richiesto e usa $P(X=k) = e^{-\lambda}\frac{\lambda^k}{k!}$. & La domanda chiede $k=0$ chiamate. \[ P(X=0) = e^{-1}\frac{1^0}{0!} = e^{-1} \approx 0.368 \] \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\begin{card}[frametitle={Distribuzione Uniforme $\boldsymbol{X \sim U(a, b)}$}]
+\textbf{Teoria:} Modella una scelta casuale in un intervallo continuo $[a,b]$.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto ($X \sim U(4,10)$)} \\
+    \hline
+    \textbf{1. Identifica gli estremi:} Trova $a$ e $b$ dell'intervallo. & Dati: $a=4, b=10$. \\
+    \hline
+    \textbf{2. Calcola l'Altezza:} L'altezza della densità (rettangolo) è $h = \frac{1}{b-a}$. & L'altezza della densità è $h = \frac{1}{10-4} = \frac{1}{6}$. \\
+    \hline
+    \textbf{3. Calcola la Base:} È la lunghezza dell'intervallo della domanda. & Domanda: $P(X>8)$. L'intervallo di interesse è $[8,10]$, quindi la Base è $10-8=2$. \\
+    \hline
+    \textbf{4. Calcola l'Area:} Probabilità = Base $\times$ Altezza. & Area = $2 \times \frac{1}{6} = \frac{1}{3}$. \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\newpage
+
+\begin{card}[frametitle={Distribuzione Esponenziale $\boldsymbol{X \sim Exp(\lambda)}$}]
+\textbf{Teoria:} Modella il tempo di attesa tra un evento e il successivo.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto (Durata LED)} \\
+    \hline
+    \textbf{1. Trova $\lambda$:} Se hai la densità, leggilo. Se hai la media $E[T]$, calcola $\lambda = 1/E[T]$. & Dati: Durata media di un LED è 1000 ore. Questo significa $E[T]=1000$. \[ \lambda = 1/1000 \] \\
+    \hline
+    \textbf{2. Usa la formula di sopravvivenza:} Per calcolare $P(T > t)$, usa la scorciatoia: \[ P(T > t) = e^{-\lambda t} \] & Domanda: Prob. che duri più di 1200 ore ($t=1200$)? \[ P(T > 1200) = e^{-(1/1000) \cdot 1200} = e^{-1.2} \approx 0.301 \] \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\begin{card}[frametitle={Distribuzione Normale $\boldsymbol{X \sim N(\mu, \sigma^2)}$}]
+\textbf{Teoria:} Modella fenomeni naturali le cui variazioni sono dovute a molte piccole cause indipendenti.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto ($P(X>185)$ con $\mu=175, \sigma=7$)} \\
+    \hline
+    \textbf{1. Identifica i parametri:} Trova la media $\mu$ e la \textbf{deviazione standard $\sigma$} (ricorda $\sigma = \sqrt{\sigma^2}$). & Dati del problema: $\mu=175$, $\sigma=7$. \\
+    \hline
+    \textbf{2. Standardizza:} Trasforma il valore $x$ del problema in un valore $z$ usando la formula: \[ \boldsymbol{Z = \frac{X - \mu}{\sigma}} \] & \[ Z = \frac{185 - 175}{7} \approx 1.43 \] \\
+    \hline
+    \textbf{3. Riformula la probabilità e usa le tavole:} Riscrivi la domanda in termini di $Z$ e usa le regole di simmetria e la tavola $\Phi(z)$. & La domanda diventa $P(Z > 1.43)$. Usando la regola della coda destra: \[ P(Z > 1.43) = 1 - \Phi(1.43) = 1 - 0.9236 = 0.0764 \] \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\newpage
+
+% ==============================================================================
+% SEZIONE 4: TEOREMI E APPROSSIMAZIONI
+% ==============================================================================
+\section*{Sezione 4: Teoremi e Approssimazioni}
+
+\begin{card}[frametitle={Teorema del Limite Centrale (TLC)}]
+\textbf{Teoria:} La somma o media di un grande numero ($n>30$) di v.a. i.i.d. si distribuisce come una Normale.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto (Carico ascensore)} \\
+    \hline
+    \textbf{1. Analizza la singola v.a. $X_i$:} Calcola la sua media $\mu$ e varianza $\sigma^2$. & Dati per 1 persona: $\mu=75$ kg, $\sigma^2=100$. \\
+    \hline
+    \textbf{2. Calcola i parametri della Somma $S_n$:} Usa $E[S_n] = n\mu$ e $\text{Var}(S_n) = n\sigma^2$. & Per $n=50$ persone: $E[S_{50}] = 50 \cdot 75 = 3750$. \newline $\text{Var}(S_{50}) = 50 \cdot 100 = 5000$. \\
+    \hline
+    \textbf{3. Approssima e Standardizza:} Tratta $S_n$ come una $N(n\mu, n\sigma^2)$ e calcola lo Z-score per il valore richiesto. & Domanda: $P(S_{50} > 3850)$? \[ Z = \frac{3850 - 3750}{\sqrt{5000}} \approx 1.41 \] \\
+    \hline
+    \textbf{4. Risolvi con le tavole:} Calcola la probabilità finale. & $P(Z > 1.41) = 1 - \Phi(1.41) \approx 1 - 0.9207 = 0.0793$. \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\begin{card}[frametitle={Legge dei Grandi Numeri (LGN)}]
+\textbf{Teoria:} La media campionaria $\bar{X}_n$ converge alla media vera $\mu$ per $n$ che tende all'infinito.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta Concettuale} & \textbf{Esempio Svolto (Guadagno del Casinò)} \\
+    \hline
+    \textbf{1. Calcola la Media Vera ($\mu$):} Trova il valore atteso $E[X]$ della singola azione. & Il guadagno atteso per il casinò da una singola giocata alla roulette è $E[X] = +0.027\text{€}$. \\
+    \hline
+    \textbf{2. Applica il Principio:} Concludi che per $n$ molto grande, la media osservata $\bar{X}_n$ sarà quasi certamente uguale alla media vera $\mu$. & Per la LGN, dopo milioni di giocate ($n$ grande), il guadagno medio \textit{osservato} dal casinò sarà $\approx 0.027\text{€}$ per giocata, garantendo un profitto. \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\begin{card}[frametitle={Approssimazione della Binomiale alla Normale}]
+\textbf{Teoria:} Se $n$ è grande, una Binomiale può essere approssimata da una Normale.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Passo della Ricetta} & \textbf{Esempio Svolto ($P(X>210)$ in 400 lanci)} \\
+    \hline
+    \textbf{1. Verifica le condizioni:} Controlla che $np > 5$ e $n(1-p) > 5$. & $n=400, p=0.5 \implies np=200 > 5$. Condizioni verificate. \\
+    \hline
+    \textbf{2. Calcola i parametri della Normale:} $\mu = np$ e $\sigma^2 = np(1-p)$. & $\mu=200$, $\sigma^2=100$. La Binomiale è circa $N(200, 100)$. \\
+    \hline
+    \textbf{3. Applica la correzione di continuità:} Trasforma la domanda discreta in continua. & $P(X > 210)$ diventa $P(X \ge 211)$. Applichiamo la correzione: $P(Y \ge 211-0.5) = P(Y \ge 210.5)$. \\
+    \hline
+    \textbf{4. Standardizza e Risolvi:} Procedi come un normale problema sulla Gaussiana. & $Z = \frac{210.5-200}{\sqrt{100}} = 1.05$. \[ P(Z \ge 1.05) = 1 - \Phi(1.05) \] \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\newpage
+
+% ==============================================================================
+% SEZIONE 5: TAVOLE STATISTICHE
+% ==============================================================================
+\section*{Sezione 5: Tavole Statistiche}
+
+\begin{card}[frametitle={Tavola della Normale Standardizzata $Z \sim N(0,1)$}]
+\subsection*{Valori di $\Phi(z) = P(Z \le z)$ per $z \le 0$}
+\centering
+\resizebox{0.9\textwidth}{!}{%
+\begin{tabular}{|c|cccccccccc|}
+\hline
+$z$ & \textbf{0.00} & \textbf{0.01} & \textbf{0.02} & \textbf{0.03} & \textbf{0.04} & \textbf{0.05} & \textbf{0.06} & \textbf{0.07} & \textbf{0.08} & \textbf{0.09} \\
+\hline
+\textbf{-3.4} & 0.0003 & 0.0003 & 0.0003 & 0.0003 & 0.0003 & 0.0003 & 0.0003 & 0.0003 & 0.0003 & 0.0002 \\
+\textbf{-3.3} & 0.0005 & 0.0005 & 0.0005 & 0.0004 & 0.0004 & 0.0004 & 0.0004 & 0.0004 & 0.0004 & 0.0003 \\
+\textbf{-3.2} & 0.0007 & 0.0007 & 0.0006 & 0.0006 & 0.0006 & 0.0006 & 0.0006 & 0.0005 & 0.0005 & 0.0005 \\
+\textbf{-3.1} & 0.0010 & 0.0009 & 0.0009 & 0.0009 & 0.0008 & 0.0008 & 0.0008 & 0.0008 & 0.0007 & 0.0007 \\
+\textbf{-3.0} & 0.0013 & 0.0013 & 0.0013 & 0.0012 & 0.0012 & 0.0011 & 0.0011 & 0.0011 & 0.0010 & 0.0010 \\
+\textbf{-2.9} & 0.0019 & 0.0018 & 0.0018 & 0.0017 & 0.0016 & 0.0016 & 0.0015 & 0.0015 & 0.0014 & 0.0014 \\
+\textbf{-2.8} & 0.0026 & 0.0025 & 0.0024 & 0.0023 & 0.0023 & 0.0022 & 0.0021 & 0.0021 & 0.0020 & 0.0019 \\
+\textbf{-2.7} & 0.0035 & 0.0034 & 0.0033 & 0.0032 & 0.0031 & 0.0030 & 0.0029 & 0.0028 & 0.0027 & 0.0026 \\
+\textbf{-2.6} & 0.0047 & 0.0045 & 0.0044 & 0.0043 & 0.0041 & 0.0040 & 0.0039 & 0.0038 & 0.0037 & 0.0036 \\
+\textbf{-2.5} & 0.0062 & 0.0060 & 0.0059 & 0.0057 & 0.0055 & 0.0054 & 0.0052 & 0.0051 & 0.0049 & 0.0048 \\
+\textbf{-2.4} & 0.0082 & 0.0080 & 0.0078 & 0.0075 & 0.0073 & 0.0071 & 0.0069 & 0.0068 & 0.0066 & 0.0064 \\
+\textbf{-2.3} & 0.0107 & 0.0104 & 0.0102 & 0.0099 & 0.0096 & 0.0094 & 0.0091 & 0.0089 & 0.0087 & 0.0084 \\
+\textbf{-2.2} & 0.0139 & 0.0136 & 0.0132 & 0.0129 & 0.0125 & 0.0122 & 0.0119 & 0.0116 & 0.0113 & 0.0110 \\
+\textbf{-2.1} & 0.0179 & 0.0174 & 0.0170 & 0.0166 & 0.0162 & 0.0158 & 0.0154 & 0.0150 & 0.0146 & 0.0143 \\
+\textbf{-2.0} & 0.0228 & 0.0222 & 0.0217 & 0.0212 & 0.0207 & 0.0202 & 0.0197 & 0.0192 & 0.0188 & 0.0183 \\
+\textbf{-1.9} & 0.0287 & 0.0281 & 0.0274 & 0.0268 & 0.0262 & 0.0256 & 0.0250 & 0.0244 & 0.0239 & 0.0233 \\
+\textbf{-1.8} & 0.0359 & 0.0351 & 0.0344 & 0.0336 & 0.0329 & 0.0322 & 0.0314 & 0.0307 & 0.0301 & 0.0294 \\
+\textbf{-1.7} & 0.0446 & 0.0436 & 0.0427 & 0.0418 & 0.0409 & 0.0401 & 0.0392 & 0.0384 & 0.0375 & 0.0367 \\
+\textbf{-1.6} & 0.0548 & 0.0537 & 0.0526 & 0.0516 & 0.0505 & 0.0495 & 0.0485 & 0.0475 & 0.0465 & 0.0455 \\
+\textbf{-1.5} & 0.0668 & 0.0655 & 0.0643 & 0.0630 & 0.0618 & 0.0606 & 0.0594 & 0.0582 & 0.0571 & 0.0559 \\
+\textbf{-1.4} & 0.0808 & 0.0793 & 0.0778 & 0.0764 & 0.0749 & 0.0735 & 0.0721 & 0.0708 & 0.0694 & 0.0681 \\
+\textbf{-1.3} & 0.0968 & 0.0951 & 0.0934 & 0.0918 & 0.0901 & 0.0885 & 0.0869 & 0.0853 & 0.0838 & 0.0823 \\
+\textbf{-1.2} & 0.1151 & 0.1131 & 0.1112 & 0.1093 & 0.1075 & 0.1056 & 0.1038 & 0.1020 & 0.1003 & 0.0985 \\
+\textbf{-1.1} & 0.1357 & 0.1335 & 0.1314 & 0.1292 & 0.1271 & 0.1251 & 0.1230 & 0.1210 & 0.1190 & 0.1170 \\
+\textbf{-1.0} & 0.1587 & 0.1562 & 0.1539 & 0.1515 & 0.1492 & 0.1469 & 0.1446 & 0.1423 & 0.1401 & 0.1379 \\
+\textbf{-0.0} & 0.5000 & 0.4960 & 0.4920 & 0.4880 & 0.4840 & 0.4801 & 0.4761 & 0.4721 & 0.4681 & 0.4641 \\
+\hline
+\end{tabular}%
+}
+
+\newpage
+
+\subsection*{Valori di $\Phi(z) = P(Z \le z)$ per $z \ge 0$}
+\centering
+\resizebox{0.9\textwidth}{!}{%
+\begin{tabular}{|c|cccccccccc|}
+\hline
+$z$ & \textbf{0.00} & \textbf{0.01} & \textbf{0.02} & \textbf{0.03} & \textbf{0.04} & \textbf{0.05} & \textbf{0.06} & \textbf{0.07} & \textbf{0.08} & \textbf{0.09} \\
+\hline
+\textbf{0.0} & 0.5000 & 0.5040 & 0.5080 & 0.5120 & 0.5160 & 0.5199 & 0.5239 & 0.5279 & 0.5319 & 0.5359 \\
+\textbf{0.1} & 0.5398 & 0.5438 & 0.5478 & 0.5517 & 0.5557 & 0.5596 & 0.5636 & 0.5675 & 0.5714 & 0.5753 \\
+\textbf{0.2} & 0.5793 & 0.5832 & 0.5871 & 0.5910 & 0.5948 & 0.5987 & 0.6026 & 0.6064 & 0.6103 & 0.6141 \\
+\textbf{0.3} & 0.6179 & 0.6217 & 0.6255 & 0.6293 & 0.6331 & 0.6368 & 0.6406 & 0.6443 & 0.6480 & 0.6517 \\
+\textbf{0.4} & 0.6554 & 0.6591 & 0.6628 & 0.6664 & 0.6700 & 0.6736 & 0.6772 & 0.6808 & 0.6844 & 0.6879 \\
+\textbf{0.5} & 0.6915 & 0.6950 & 0.6985 & 0.7019 & 0.7054 & 0.7088 & 0.7123 & 0.7157 & 0.7190 & 0.7224 \\
+\textbf{0.6} & 0.7257 & 0.7291 & 0.7324 & 0.7357 & 0.7389 & 0.7422 & 0.7454 & 0.7486 & 0.7517 & 0.7549 \\
+\textbf{0.7} & 0.7580 & 0.7611 & 0.7642 & 0.7673 & 0.7704 & 0.7734 & 0.7764 & 0.7794 & 0.7823 & 0.7852 \\
+\textbf{0.8} & 0.7881 & 0.7910 & 0.7939 & 0.7967 & 0.7995 & 0.8023 & 0.8051 & 0.8078 & 0.8106 & 0.8133 \\
+\textbf{0.9} & 0.8159 & 0.8186 & 0.8212 & 0.8238 & 0.8264 & 0.8289 & 0.8315 & 0.8340 & 0.8365 & 0.8389 \\
+\textbf{1.0} & 0.8413 & 0.8438 & 0.8461 & 0.8485 & 0.8508 & 0.8531 & 0.8554 & 0.8577 & 0.8599 & 0.8621 \\
+\textbf{1.1} & 0.8643 & 0.8665 & 0.8686 & 0.8708 & 0.8729 & 0.8749 & 0.8770 & 0.8790 & 0.8810 & 0.8830 \\
+\textbf{1.2} & 0.8849 & 0.8869 & 0.8888 & 0.8907 & 0.8925 & 0.8944 & 0.8962 & 0.8980 & 0.8997 & 0.9015 \\
+\textbf{1.3} & 0.9032 & 0.9049 & 0.9066 & 0.9082 & 0.9099 & 0.9115 & 0.9131 & 0.9147 & 0.9162 & 0.9177 \\
+\textbf{1.4} & 0.9192 & 0.9207 & 0.9222 & 0.9236 & 0.9251 & 0.9265 & 0.9279 & 0.9292 & 0.9306 & 0.9319 \\
+\textbf{1.5} & 0.9332 & 0.9345 & 0.9357 & 0.9370 & 0.9382 & 0.9394 & 0.9406 & 0.9418 & 0.9429 & 0.9441 \\
+\textbf{1.6} & 0.9452 & 0.9463 & 0.9474 & 0.9484 & 0.9495 & 0.9505 & 0.9515 & 0.9525 & 0.9535 & 0.9545 \\
+\textbf{1.7} & 0.9554 & 0.9564 & 0.9573 & 0.9582 & 0.9591 & 0.9599 & 0.9608 & 0.9616 & 0.9625 & 0.9633 \\
+\textbf{1.8} & 0.9641 & 0.9649 & 0.9656 & 0.9664 & 0.9671 & 0.9678 & 0.9686 & 0.9693 & 0.9699 & 0.9706 \\
+\textbf{1.9} & 0.9713 & 0.9719 & 0.9726 & 0.9732 & 0.9738 & 0.9744 & 0.9750 & 0.9756 & 0.9761 & 0.9767 \\
+\textbf{2.0} & 0.9772 & 0.9778 & 0.9783 & 0.9788 & 0.9793 & 0.9798 & 0.9803 & 0.9808 & 0.9812 & 0.9817 \\
+\textbf{3.4} & 0.9997 & 0.9997 & 0.9997 & 0.9997 & 0.9997 & 0.9997 & 0.9997 & 0.9997 & 0.9997 & 0.9998 \\
+\hline
+\end{tabular}%
+}
+\vspace{15pt}
+\hrule
+\vspace{15pt}
+\subsection*{Quantili $z_{\alpha}$ tali che $P(Z > z_{\alpha}) = \alpha$}
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    \textbf{$\alpha$} & 0.10 & 0.05 & 0.025 & 0.01 & 0.005 & 0.001 & 0.0005 \\
+    \hline
+    \textbf{$z_{\alpha}$} & 1.2816 & 1.6449 & 1.9600 & 2.3263 & 2.5758 & 3.0902 & 3.2905 \\
+    \hline
+\end{tabular}
+\end{card}
+
+\newpage
+
+% ==============================================================================
+% APPENDICE: RICHIAMI UTILI
+% ==============================================================================
+\section*{Appendice: Richiami Utili}
+
+\begin{card}[frametitle={Calcolo Combinatorio e Insiemi}]
+\textbf{Teoria:} Formule per contare il numero di gruppi o sequenze di oggetti.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Concetto} & \textbf{Formula e Note} \\
+    \hline
+    \textbf{Permutazioni Semplici} & Modi di ordinare $n$ oggetti distinti. \[ \boldsymbol{P_n = n!} \] \\
+    \hline
+    \textbf{Disposizioni Semplici} & Modi di scegliere E ordinare $k$ oggetti da un insieme di $n$. \[ \boldsymbol{D_{n,k} = \frac{n!}{(n-k)!}} \] \\
+    \hline
+    \textbf{Combinazioni Semplici} & Modi di scegliere $k$ oggetti da $n$, senza contare l'ordine. \[ \boldsymbol{C_{n,k} = \binom{n}{k} = \frac{n!}{k!(n-k)!}} \] \\
+    \hline
+    \textbf{Inclusione-Esclusione} & Probabilità dell'unione di due eventi. \[ \boldsymbol{P(A \cup B) = P(A) + P(B) - P(A \cap B)} \] \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\newpage
+
+\begin{card}[frametitle={Richiami di Analisi Matematica}]
+\textbf{Teoria:} Formule e proprietà utili per la manipolazione algebrica.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|X| >{\columncolor{lightyellow}}X|}
+    \hline
+    \textbf{Concetto} & \textbf{Formula e Note} \\
+    \hline
+    \textbf{Serie Geometrica} & Per $|q|<1$. Fondamentale per le v.a. discrete su domini infiniti. \[ \boldsymbol{\sum_{k=0}^{\infty} q^k = \frac{1}{1-q}} \] \\
+    \hline
+    \textbf{Serie Esponenziale} & Usata nella normalizzazione della Poisson. \[ \boldsymbol{\sum_{k=0}^{\infty} \frac{x^k}{k!} = e^x} \] \\
+    \hline
+    \textbf{Integrazione per Parti} & Utile per calcolare il valore atteso di v.a. continue. \[ \boldsymbol{\int_a^b f g' \,dx = [fg]_a^b - \int_a^b f'g \,dx} \] \\
+    \hline
+    \textbf{Proprietà delle Potenze} & Utile nelle sommatorie. \[ \boldsymbol{a^k \cdot b^k = (ab)^k} \] \\
+    \hline
+    \textbf{Costante in Sommatoria} & Permette di semplificare i calcoli. \[ \boldsymbol{\sum_{k} c \cdot f(k) = c \cdot \sum_{k} f(k)} \] \\
+    \hline
+    \textbf{Inverso dell'Esponenziale} & Per isolare una variabile all'esponente. \[ \boldsymbol{\ln(e^z) = z} \] \\
+    \hline
+\end{tabularx}
+\end{center}
+\end{card}
+
+\end{document}
+
+\end{document}
