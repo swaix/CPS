@@ -2,7 +2,7 @@
 
 ## 🎯 Scopo del Repository
 
-Questo repository nasce come una raccolta personale di materiale didattico per il corso di **Calcolo delle Probabilità e Statistica (CPS)** da 6 CFU, tenuto presso l'**Università degli Studi di Roma "Tor Vergata"**.
+Questo repository nasce come una raccolta personale di materiale didattico per il corso di Claudio Macci - **Calcolo delle Probabilità e Statistica (CPS)** da 6 CFU, tenuto presso l'**Università degli Studi di Roma "Tor Vergata"**.
 
 La raccolta, aggiornata al 2025, ha lo scopo di centralizzare appunti, prove d'esame, simulazioni ed esercizi per facilitare lo studio e la preparazione. Per informazioni ufficiali sul corso, si rimanda al sito del docente: [Pagina Didattica Ufficiale](https://www.mat.uniroma2.it/~macci/didattica-corsoST.htm).
 
