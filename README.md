@@ -2,31 +2,47 @@
 
 ## 🎯 Scopo del Repository
 
-Questo repository nasce come una raccolta personale e organizzata di materiale didattico per il corso di **Calcolo delle Probabilità e Statistica (CPS)**. L'obiettivo è centralizzare appunti, prove d'esame passate, simulazioni ed esercizi per facilitare lo studio e la preparazione.
+Questo repository nasce come una raccolta personale di materiale didattico per il corso di **Calcolo delle Probabilità e Statistica (CPS)** da 6 CFU, tenuto presso l'**Università degli Studi di Roma "Tor Vergata"**.
 
-## 🗂️ Struttura del Repository
+La raccolta, aggiornata al 2025, ha lo scopo di centralizzare appunti, prove d'esame, simulazioni ed esercizi per facilitare lo studio e la preparazione. Per informazioni ufficiali sul corso, si rimanda al sito del docente: [Pagina Didattica Ufficiale](https://www.mat.uniroma2.it/~macci/didattica-corsoST.htm).
 
-Il materiale è organizzato nelle seguenti cartelle per garantire una navigazione semplice e intuitiva:
+## 📚 Programma del Corso e Materiale Correlato
 
-* `./Archivio esami/`:
-    Contiene le prove scritte, le simulazioni e gli esoneri degli anni accademici passati. I file sono nominati con il formato `ST<anno_inizio><anno_fine><tipo_prova>.pdf` per una facile identificazione.
+Di seguito è riportato il programma ufficiale del corso, con un collegamento diretto ai riassunti disponibili in questo repository.
 
-* `./lezioni riassunte/`:
-    Include PDF con riassunti delle lezioni, raggruppati per argomenti principali del corso (es. Fondamenti, Variabili Aleatorie Discrete, Teoremi Limite).
+### 1. Fondamenti di Probabilità e Statistica Descrittiva
+Concetti di base, spazi di probabilità, probabilità condizionata, formula di Bayes e cenni di calcolo combinatorio.
+* **Materiale di riferimento:** [Fondamenti (Lezioni 1-3)](./lezioni%20riassunte/CPS___Fondamenti__Lezioni_1_3_.pdf)
 
-I file presenti nella cartella principale (`root`) del repository si riferiscono generalmente all'anno accademico più recente o in corso.
+### 2. Variabili Aleatorie Discrete
+Definizione, funzione di distribuzione e studio delle principali distribuzioni discrete (ipergeometrica, binomiale, geometrica, Poisson). Analisi di variabili multidimensionali, speranza matematica, varianza e covarianza.
+* **Materiale di riferimento:** [Variabili Aleatorie Discrete (Lezioni 4-9)](./lezioni%20riassunte/CPS___Variabili_Aleatorie_Discrete__Lezioni_4_9_.pdf)
+
+### 3. Variabili Aleatorie Continue
+Studio delle distribuzioni continue più comuni (uniforme, esponenziale, normale, Gamma) e del processo di Poisson. Calcolo di speranza matematica, momenti e varianza per variabili continue.
+* **Materiale di riferimento:** [Variabili Continue e Indicatori (Lezioni 10-21)](./lezioni%20riassunte/CPS___Variabili_Continue_e_Indicatori__Lezioni_10_21_.pdf)
+
+### 4. Teoremi Limite
+Approfondimento della Legge dei Grandi Numeri e del Teorema Limite Centrale, con un focus sull'approssimazione normale.
+* **Materiale di riferimento:** [Teoremi Limite (Lezioni 22-24)](./lezioni%20riassunte/CPS___Teoremi_Limite__Lezioni_22_24_.pdf)
+
+## 🗂️ Struttura delle Cartelle
+
+* `./Archivio esami/`: Contiene le prove scritte, le simulazioni e gli esoneri degli anni accademici passati.
+* `./lezioni riassunte/`: Contiene i PDF con i riassunti delle lezioni, mappati nella sezione Programma.
+
+## 🚀 Contenuti Futuri
+
+È in preparazione un formulario completo che riassume le principali formule e i concetti del corso. Verrà aggiunto al repository non appena sarà finalizzato.
 
 ## 🤝 Come Contribuire
 
-Questo progetto è aperto a contributi! Se hai materiale utile (come appunti, esercizi svolti o prove d'esame mancanti) che vorresti aggiungere, segui questi passaggi:
-
+Se hai materiale utile che vorresti aggiungere, segui questi passaggi:
 1.  **Fai un Fork** del repository.
-2.  **Crea un nuovo Branch** per le tue modifiche (`git checkout -b nome-tua-modifica`).
-3.  **Aggiungi i file** nelle cartelle appropriate, rispettando la convenzione dei nomi esistente.
-4.  **Fai il Commit** delle tue modifiche (`git commit -m "Aggiunto materiale per l'anno X"`).
-5.  **Fai il Push** sul tuo branch (`git push origin nome-tua-modifica`).
-6.  Apri una **Pull Request** per unire le tue modifiche al repository principale.
+2.  **Crea un nuovo Branch** per le tue modifiche.
+3.  **Aggiungi i file** nelle cartelle appropriate.
+4.  **Fai il Commit** e apri una **Pull Request**.
 
 ## 📝 Disclaimer
 
-Il materiale presente in questo archivio è fornito "così com'è" a solo scopo didattico e di supporto allo studio. Non vi è alcuna garanzia sull'accuratezza o completezza dei contenuti. Si consiglia di fare sempre riferimento ai materiali ufficiali forniti dal docente del corso.
+Il materiale presente in questo archivio è fornito "così com'è" a solo scopo didattico. Non vi è alcuna garanzia sull'accuratezza dei contenuti.
